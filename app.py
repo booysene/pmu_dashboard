@@ -1,4 +1,4 @@
-# This is the Github app
+# This is the GItbub streamlink Cloud app altered to show only one event 14 April 2026 event and logo change
 #%%writefile app.py
 
 import streamlit as st
@@ -18,96 +18,35 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("⚡ PMU Data Science Dashboard")
-st.caption("Multi-PMU - Grid Frequency Event Analysis")
-
 # ---------------------------------------------------
-# EVENT FILES
+# DASHBOARD HEADER
 # ---------------------------------------------------
 
-pmu_event_files = {
-    "PMU 1": {
-    "23 February 2026 - 02:26:27":
-        "data/PMU_1_t_2026-02-23 02-26-27-780000.csv",
+logo1 = "data/logo1.png"
+logo2 = "data/logo2.png"
+logo3 = "data/logo3.png"
+logo4 = "data/logo4.png"
 
-    "14 April 2026 - 10:10:18":
-        "data/PMU_1_t_2026-04-14_10-10-18.csv",
+c1, c2, c3, c4, title_col = st.columns(
+    [0.45, 0.45, 0.45, 0.45, 6],
+    vertical_alignment="center"
+)
 
-    "25 April 2026 - 21:15:01":
-        "data/PMU_1_t_2026-04-25_21-15-01.csv",
+with c1:
+    st.image(logo1, width=45)
 
-    "27 April 2026 - 01:05:50":
-        "data/PMU_1_t_2026-04-27_01-05-50.csv"
-    },
-    "PMU 2": {
-    "23 February 2026 - 02:26:27":
-        "data/PMU_2_t_2026-02-23 02-26-27-780000.csv",
+with c2:
+    st.image(logo2, width=45)
 
-    "14 April 2026 - 10:10:18":
-        "data/PMU_2_t_2026-04-14_10-10-18.csv",
+with c3:
+    st.image(logo3, width=45)
 
-    "25 April 2026 - 21:15:01":
-        "data/PMU_2_t_2026-04-25_21-15-01.csv",
+with c4:
+    st.image(logo4, width=45)
 
-    "27 April 2026 - 01:05:50":
-        "data/PMU_2_t_2026-04-27_01-05-50.csv"
-    },
-    "PMU 3": {
-    "23 February 2026 - 02:26:27":
-        "data/PMU_3_t_2026-02-23 02-26-27-780000.csv",
-
-    "14 April 2026 - 10:10:18":
-        "data/PMU_3_t_2026-04-14_10-10-18.csv",
-
-    "25 April 2026 - 21:15:01":
-        "data/PMU_3_t_2026-04-25_21-15-01.csv",
-
-    "27 April 2026 - 01:05:50":
-        "data/PMU_3_t_2026-04-27_01-05-50.csv"
-    },
-    "PMU 4": {
-    "23 February 2026 - 02:26:27":
-        "data/PMU_4_t_2026-02-23 02-26-27-780000.csv",
-
-    "14 April 2026 - 10:10:18":
-        "data/PMU_4_t_2026-04-14_10-10-18.csv",
-
-    "25 April 2026 - 21:15:01":
-        "data/PMU_4_t_2026-04-25_21-15-01.csv",
-
-    "27 April 2026 - 01:05:50":
-        "data/PMU_4_t_2026-04-27_01-05-50.csv"
-    },
-    "PMU 5": {
-    "23 February 2026 - 02:26:27":
-        "data/PMU_5_t_2026-02-23 02-26-27-780000.csv",
-
-    "14 April 2026 - 10:10:18":
-        "data/PMU_5_t_2026-04-14_10-10-18.csv",
-
-    "25 April 2026 - 21:15:01":
-        "data/PMU_5_t_2026-04-25_21-15-01.csv",
-
-    "27 April 2026 - 01:05:50":
-        "data/PMU_5_t_2026-04-27_01-05-50.csv"
-    },
-    "PMU 6": {
-    "23 February 2026 - 02:26:27":
-        "data/PMU_6_t_2026-02-23 02-26-27-780000.csv",
-
-    "14 April 2026 - 10:10:18":
-        "data/PMU_6_t_2026-04-14_10-10-18.csv",
-
-    "25 April 2026 - 21:15:01":
-        "data/PMU_6_t_2026-04-25_21-15-01.csv",
-
-    "27 April 2026 - 01:05:50":
-        "data/PMU_6_t_2026-04-27_01-05-50.csv"
-    }
-}
-
-
-
+with title_col:
+    st.title("PMU Data Science Dashboard")
+    st.caption("Multi-PMU - Grid Frequency Event Analysis")
 
 
 
@@ -171,6 +110,24 @@ pmu_feeder_maps = {
     }
 }
 
+# ---------------------------------------------------
+# PMU DATA FILES
+# ---------------------------------------------------
+
+pmu_files = {
+    "PMU 1": "data/PMU_1_t_2026-04-14_10-10-18.csv",
+
+    "PMU 2": "data/PMU_2_t_2026-04-14_10-10-18.csv",
+
+    "PMU 3": "data/PMU_3_t_2026-04-14_10-10-18.csv",
+
+    "PMU 4": "data/PMU_4_t_2026-04-14_10-10-18.csv",
+
+    "PMU 5": "data/PMU_5_t_2026-04-14_10-10-18.csv",
+
+    "PMU 6": "data/PMU_6_t_2026-04-14_10-10-18.csv"
+}
+
 
 # ---------------------------------------------------
 # SIDEBAR
@@ -180,22 +137,10 @@ st.sidebar.header("Dashboard Controls")
 
 selected_pmu = st.sidebar.selectbox(
     "Select PMU",
-    list(pmu_event_files.keys())
+    list(pmu_files.keys())
 )
 
-available_events = pmu_event_files[selected_pmu]
 
-if not available_events:
-    st.warning(
-        f"No event files have been configured for {selected_pmu}."
-    )
-    st.stop()
-
-selected_event = st.sidebar.selectbox(
-    "Select Event",
-    list(available_events.keys()),
-    index=min(1, len(available_events) - 1)
-)
 
 feeder_map = pmu_feeder_maps[selected_pmu]
 
@@ -210,18 +155,22 @@ selected_feeder = st.sidebar.selectbox(
     list(feeder_map.keys())
 )
 
+
+
+channel = feeder_map[selected_feeder]
+
 st.sidebar.divider()
 
 st.sidebar.write(f"**Selected PMU:** {selected_pmu}")
-st.sidebar.write(f"**Selected event:** {selected_event}")
+
 st.sidebar.write(f"**Selected feeder:** {selected_feeder}")
 
 
 # ---------------------------------------------------
-# LOAD SELECTED EVENT
+# LOAD PMU 1 FREQUENCY EVENT
 # ---------------------------------------------------
 
-CSV_FILE = pmu_event_files[selected_pmu][selected_event]
+CSV_FILE = pmu_files[selected_pmu]
 
 df = pd.read_csv(CSV_FILE)
 
@@ -233,15 +182,13 @@ df = df.sort_values(
     "Date_Time"
 ).reset_index(drop=True)
 
-channel = feeder_map[selected_feeder]
-
 # ---------------------------------------------------
 # CURRENT DASHBOARD SELECTION
 # ---------------------------------------------------
 
 st.info(
     f"Viewing {selected_pmu} | "
-    f"{selected_event} | "
+
     f"{selected_feeder}"
 )
 
@@ -989,5 +936,5 @@ st.divider()
 
 st.caption(
     f"GridGnosis PMU Data | "
-    f"{selected_pmu} | {selected_event}"
+    f"{selected_pmu}"
 )
