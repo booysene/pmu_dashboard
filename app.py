@@ -45,7 +45,7 @@ with c4:
     st.image(logo4, width=45)
 
 with title_col:
-    st.title("PMU Data Science Dashboard")
+    st.title("Power System Grid PMU Dashboard")
     st.caption("Multi-PMU - Grid Frequency Event Analysis")
 
 
