@@ -13,7 +13,7 @@ import plotly.graph_objects as go
 # ---------------------------------------------------
 
 st.set_page_config(
-    page_title="PMU Data Science Dashboard",
+    page_title="Power System Grid PMU Dashboard",
     page_icon="⚡",
     layout="wide"
 )
